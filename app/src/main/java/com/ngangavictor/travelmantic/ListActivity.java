@@ -43,7 +43,7 @@ public class ListActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.list_ac_menu,menu);
         MenuItem menuItem = menu.findItem(R.id.addDeal);
-        if (FirebaseUtil.isAdmin==true){
+        if (FirebaseUtil.isAdmin){
             menuItem.setVisible(true);
         }else {
             menuItem.setVisible(false);
@@ -69,9 +69,8 @@ public class ListActivity extends AppCompatActivity {
                         });
                 FirebaseUtil.detachListener();
                 return true;
-            default:
-                return super.onOptionsItemSelected(item);
         }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

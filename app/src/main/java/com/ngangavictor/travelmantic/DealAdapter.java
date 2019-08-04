@@ -3,6 +3,7 @@ package com.ngangavictor.travelmantic;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,12 +34,13 @@ public class DealAdapter extends RecyclerView.Adapter<DealAdapter.DealViewHolder
         //FirebaseUtil.openFbReference("traveldeals",DealAdapter.this);
         firebaseDatabase = FirebaseUtil.firebaseDatabase;
         databaseReference = FirebaseUtil.databaseReference;
-        deals = FirebaseUtil.deals;
+        this.deals = FirebaseUtil.deals;
         childEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
                 TravelDeal travelDeal = dataSnapshot.getValue(TravelDeal.class);
+                Log.d("Deal: ",travelDeal.getTitle());
                 travelDeal.setId(dataSnapshot.getKey());
                 deals.add(travelDeal);
                 notifyItemInserted(deals.size() - 1);
@@ -104,6 +106,7 @@ public class DealAdapter extends RecyclerView.Adapter<DealAdapter.DealViewHolder
             tvDesc.setText(deal.getDescription());
             tvPrice.setText(deal.getPrice());
             showImage(deal.getUrl());
+            Log.d("url",deal.getUrl());
         }
 
         @Override

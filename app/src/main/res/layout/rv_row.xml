@@ -33,8 +33,6 @@
              />
 
         <TextView
-            android:gravity="right"
-            android:layout_gravity="right"
             android:id="@+id/textViewPrice"
             android:textSize="18sp"
             android:textColor="@color/colorAccent"
